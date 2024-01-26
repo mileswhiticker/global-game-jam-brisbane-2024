@@ -5,13 +5,16 @@
 [ext_resource type="SpriteFrames" uid="uid://dfmc763buqcwo" path="res://Textures/player_walk.tres" id="4_hks7x"]
 [ext_resource type="SpriteFrames" uid="uid://454lsmdjxrv3" path="res://Textures/player_idle.tres" id="5_rj76q"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2juux"]
-size = Vector2(55, 97)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxuph"]
+radius = 20.5
+height = 87.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ayk"]
-size = Vector2(43, 137)
+size = Vector2(73.5, 89)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("WalkAnim", "PunchAnim", "IdleAnim", "PunchArea2D", "PunchShape2D")]
+collision_layer = 2
+collision_mask = 2
 up_direction = Vector2(0, 1)
 script = ExtResource("1_qepup")
 WalkAnim = NodePath("AnimPlayerWalk")
@@ -21,18 +24,17 @@ PunchArea2D = NodePath("PunchArea2D")
 PunchShape2D = NodePath("PunchArea2D/PunchShape2D")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -3.5)
-shape = SubResource("RectangleShape2D_2juux")
+position = Vector2(-1.5, 1.5)
+shape = SubResource("CapsuleShape2D_yxuph")
 metadata/_edit_group_ = true
 
 [node name="PunchArea2D" type="Area2D" parent="."]
-monitoring = false
-monitorable = false
+collision_layer = 4
+collision_mask = 4
 
 [node name="PunchShape2D" type="CollisionShape2D" parent="PunchArea2D"]
-position = Vector2(45, 0)
+position = Vector2(29.75, 1.5)
 shape = SubResource("RectangleShape2D_i0ayk")
-disabled = true
 
 [node name="AnimPlayerPunch" type="AnimatedSprite2D" parent="."]
 visible = false

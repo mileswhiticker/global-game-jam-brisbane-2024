@@ -1,3 +1,6 @@
+using System;
+using System.Diagnostics.Tracing;
+
 namespace globalgamejam2024.Shared;
 
 public static class MovementDirection
@@ -10,4 +13,20 @@ public static class MovementDirection
 public static class PlayerAction
 {
     public static string Punch = "Punch";
+}
+
+public static class Global
+{
+    public static int CurrentPunchID = 0;
+}
+
+public static class GGJCollisionLayers
+{
+    public static uint None = 0;
+    public static uint Player = 2;
+    public static uint Enemy = 3;
+    public static uint Bitmask(uint value)
+    {
+        return (uint)Math.Pow(2f, (float)(value - 1));
+    }
 }

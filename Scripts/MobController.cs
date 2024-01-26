@@ -7,7 +7,7 @@ public partial class MobController : Node
 	[Export]
 	public PackedScene EnemyScene;
     [Export]
-    public double tLeftSpawnEnemy = 1.0f;
+    public double tLeftSpawnEnemy = 0.5f;
     [Export]
     public double enemySpawnInterval = 3.0f;
 
@@ -43,7 +43,7 @@ public partial class MobController : Node
     protected Vector2 GetNextSpawnPos()
     {
         Vector2 dimsLower = new Vector2(100, 100);
-        Vector2 dimsUpper = new Vector2(100, 600);
+        Vector2 dimsUpper = new Vector2(200, 400);
         Vector2 spawnPos = new Vector2((float)GD.RandRange(dimsLower.X, dimsUpper.X), (float)GD.RandRange(dimsLower.Y, dimsUpper.Y));
         return spawnPos;
     }
