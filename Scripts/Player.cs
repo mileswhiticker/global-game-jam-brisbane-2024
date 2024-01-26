@@ -22,9 +22,13 @@ public partial class Player : CharacterBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        //start out non-visible 
         WalkAnim.Visible = false;
         PunchAnim.Visible = false;
+
+        //have these playing in the background
 		IdleAnim.Play();
+        WalkAnim.Play();
 
         //these are now set in the editor, but ive left them here as an example of how to do it in code
         /*
@@ -58,27 +62,23 @@ public partial class Player : CharacterBody2D
 			//GD.Print(Velocity.LengthSquared());
             if (Velocity.LengthSquared() > 0.1)
 			{
-				if (!WalkAnim.IsPlaying())
+				if (!WalkAnim.Visible)
 				{
                     //enable walk anim
                     WalkAnim.Visible = true;
-                    WalkAnim.Play();
 
 					//disable idle anim
-					IdleAnim.Stop();
 					IdleAnim.Visible = false;
 				}
             }
             else
             {
-                if (!IdleAnim.IsPlaying())
+                if (!IdleAnim.Visible)
                 {
                     //enable idle anim
                     IdleAnim.Visible = true;
-                    IdleAnim.Play();
 
                     //disable walk anim
-                    WalkAnim.Stop();
                     WalkAnim.Visible = false;
                 }
             }
@@ -146,13 +146,13 @@ public partial class Player : CharacterBody2D
 		//are we already punching?
         if (!PunchAnim.IsPlaying())
         {
-            //
-            Global.CurrentPunchID = ++NextPunchID;
-
-            Godot.Collections.Array<Node2D> overlappingNodes = PunchArea2D.GetOverlappingBodies();
+            //only one unique player punch at a time
+            GGJ.CurrentPunchID = ++NextPunchID;
 
             //GD.Print("PunchArea2D: " + PunchArea2D.CollisionLayer + "/" + PunchArea2D.CollisionMask);
 
+            //loop over all the overlapping enemies and apply a punch
+            Godot.Collections.Array<Node2D> overlappingNodes = PunchArea2D.GetOverlappingBodies();
             foreach (Node2D checkNode in overlappingNodes)
             {
                 //PhysicsBody2D physicsBody = (PhysicsBody2D)checkNode;
@@ -163,20 +163,14 @@ public partial class Player : CharacterBody2D
                 punchedEnemy.RecievePunch(BaseDamage);
             }
 
-            //enable punch hitbox
-            //PunchArea2D.Monitorable = true;
-            //PunchArea2D.Monitoring = true;
-
             //enable punch anim
             PunchAnim.Visible = true;
             PunchAnim.Play();
 
             //disable walk anim
-            WalkAnim.Stop();
             WalkAnim.Visible = false;
 
             //disable idle anim
-            IdleAnim.Stop();
             IdleAnim.Visible = false;
         }
     }
@@ -184,8 +178,6 @@ public partial class Player : CharacterBody2D
     public void FinishPunchAttack()
     {
         PunchAnim.Visible = false;
-        //PunchArea2D.Monitorable = false;
-        //PunchArea2D.Monitoring = false;
     }
 
 	[Signal] public delegate void HitPlayerEventHandler();
