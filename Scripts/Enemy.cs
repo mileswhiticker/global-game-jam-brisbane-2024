@@ -8,12 +8,20 @@ public partial class Enemy : CharacterBody2D
 	protected int RecievedPunchID = 0;
     protected float health = 1;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    [Export] AnimatedSprite2D WalkAnim;
+    [Export] AnimatedSprite2D PunchAnim;
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
     {
+        //just basic left to right movement for now
         var velocity = Velocity;
         velocity.X = 200.0f;
         Velocity = velocity;
+
+        //initial animation settings
+        WalkAnim.Play();
+        PunchAnim.Visible = false;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,17 +42,17 @@ public partial class Enemy : CharacterBody2D
 
 	public void RecievePunch(float damage)
 	{
-        if (Global.CurrentPunchID != RecievedPunchID && health > 0)
+        if (GGJ.CurrentPunchID != RecievedPunchID && health > 0)
         {
 			//only process a hit once per punch
-            RecievedPunchID = Global.CurrentPunchID;
+            RecievedPunchID = GGJ.CurrentPunchID;
             //GD.Print("Ow! " + RecievedPunchID);
             health -= damage;
 
             if(health <= 0)
             {
                 //die
-                QueueFree();
+                GGJ.mobController.KillEnemy(this);
             }
         }
     }
@@ -52,6 +60,24 @@ public partial class Enemy : CharacterBody2D
     {
         //die
         //GD.Print("Goodbye");
-        QueueFree();
+        //GGJ.mobController.KillEnemy(this);
+    }
+
+    public bool isPunching()
+    {
+        return PunchAnim.IsPlaying();
+    }
+
+    public void tryPunch()
+    {
+        PunchAnim.Play();
+        PunchAnim.Visible = true;
+        WalkAnim.Visible = false;
+    }
+
+    public void _on_punch_anim_finish()
+    {
+        PunchAnim.Visible = false;
+        WalkAnim.Visible = true;
     }
 }
