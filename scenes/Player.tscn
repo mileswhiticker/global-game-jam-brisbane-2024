@@ -9,23 +9,21 @@ size = Vector2(111, 151)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ayk"]
 size = Vector2(43, 137)
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qepup")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="PlayerCollision" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2juux")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/PlayerCollision"]
+[node name="Sprite2D" type="Sprite2D" parent="PlayerCollision"]
 position = Vector2(7.62939e-06, 0.0625153)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_grffi")
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="AttackCollision" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+[node name="AttackCollision" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(89, 2)
 shape = SubResource("RectangleShape2D_i0ayk")
 disabled = true
