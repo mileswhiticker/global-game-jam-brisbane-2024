@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://by05o6mmn75jk"]
+
+[ext_resource type="Texture2D" uid="uid://bqruggspwu01p" path="res://Textures/fence.png" id="1_petjf"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ybqw3"]
+a = Vector2(-100, 0)
+b = Vector2(100, 0)
+
+[node name="fence" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_ybqw3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_petjf")
