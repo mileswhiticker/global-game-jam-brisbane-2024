@@ -12,6 +12,8 @@ public partial class Player : CharacterBody2D
     [Export] AnimatedSprite2D PunchAnim;
     [Export] AnimatedSprite2D IdleAnim;
 
+	[Export] Area2D PunchArea2D;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -30,9 +32,14 @@ public partial class Player : CharacterBody2D
 		Transform = Transform.Translated(translatedVector);
 		*/
 
-		//update the animation that is playing
-		//first, only change the animation if we arent punching
-		if (!PunchAnim.IsPlaying())
+		if (Input.IsActionPressed(PlayerAction.Punch))
+		{
+			TryPunchAttack();
+		}
+
+        //update the animation that is playing
+        //first, only change the animation if we arent punching
+        if (!PunchAnim.IsPlaying())
 		{
 			//putting this here because im too lazy to setup signals
 			PunchAnim.Visible = false;
@@ -43,9 +50,9 @@ public partial class Player : CharacterBody2D
 			{
 				if (!WalkAnim.IsPlaying())
 				{
-					//enable walk anim
-					WalkAnim.Play();
-					WalkAnim.Visible = true;
+                    //enable walk anim
+                    WalkAnim.Visible = true;
+                    WalkAnim.Play();
 
 					//disable idle anim
 					IdleAnim.Stop();
@@ -57,8 +64,8 @@ public partial class Player : CharacterBody2D
                 if (!IdleAnim.IsPlaying())
                 {
                     //enable idle anim
-                    IdleAnim.Play();
                     IdleAnim.Visible = true;
+                    IdleAnim.Play();
 
                     //disable walk anim
                     WalkAnim.Stop();
@@ -97,7 +104,7 @@ public partial class Player : CharacterBody2D
             //face left
             WalkAnim.FlipH = false;
             IdleAnim.FlipH = false;
-            PunchAnim.FlipH = false;
+            PunchAnim.FlipH = true;
         }
 		if (Input.IsActionPressed(MovementDirection.Right))
 		{
@@ -106,7 +113,7 @@ public partial class Player : CharacterBody2D
             //face right
             WalkAnim.FlipH = true;
             IdleAnim.FlipH = true;
-            PunchAnim.FlipH = true;
+            PunchAnim.FlipH = false;
         }
 
 		translatedVector = translatedVector.Normalized();
@@ -115,6 +122,25 @@ public partial class Player : CharacterBody2D
 		return translatedVector;
 
 	}
-	
+
+	public void TryPunchAttack()
+    {
+		//are we already punching?
+        if (!PunchAnim.IsPlaying())
+        {
+            //enable punch anim
+            PunchAnim.Visible = true;
+            PunchAnim.Play();
+
+            //disable walk anim
+            WalkAnim.Stop();
+            WalkAnim.Visible = false;
+
+            //disable idle anim
+            IdleAnim.Stop();
+            IdleAnim.Visible = false;
+        }
+    }
+
 	[Signal] public delegate void HitPlayerEventHandler();
 }
