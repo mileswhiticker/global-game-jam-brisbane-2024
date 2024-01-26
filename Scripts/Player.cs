@@ -1,13 +1,26 @@
 using Godot;
 using System;
 using globalgamejam2024.Shared;
+using System.ComponentModel.Design;
 
 public partial class Player : CharacterBody2D
 {
 	[Export] public int Speed { get; set; } = 500;
 	[Export] public float Health { get; set; } = 100;
 
-	public override void _Process(double delta)
+    [Export] AnimatedSprite2D WalkAnim;
+    [Export] AnimatedSprite2D PunchAnim;
+    [Export] AnimatedSprite2D IdleAnim;
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        WalkAnim.Visible = false;
+        PunchAnim.Visible = false;
+		IdleAnim.Play();
+    }
+
+    public override void _Process(double delta)
 	{
 		/*
 		var translatedVector = GetMovementVector();
@@ -16,11 +29,49 @@ public partial class Player : CharacterBody2D
 		
 		Transform = Transform.Translated(translatedVector);
 		*/
-	}
+
+		//update the animation that is playing
+		//first, only change the animation if we arent punching
+		if (!PunchAnim.IsPlaying())
+		{
+			//putting this here because im too lazy to setup signals
+			PunchAnim.Visible = false;
+
+			//are we moving?
+			//GD.Print(Velocity.LengthSquared());
+            if (Velocity.LengthSquared() > 0.1)
+			{
+				if (!WalkAnim.IsPlaying())
+				{
+					//enable walk anim
+					WalkAnim.Play();
+					WalkAnim.Visible = true;
+
+					//disable idle anim
+					IdleAnim.Stop();
+					IdleAnim.Visible = false;
+				}
+            }
+            else
+            {
+                if (!IdleAnim.IsPlaying())
+                {
+                    //enable idle anim
+                    IdleAnim.Play();
+                    IdleAnim.Visible = true;
+
+                    //disable walk anim
+                    WalkAnim.Stop();
+                    WalkAnim.Visible = false;
+                }
+            }
+        }
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Velocity = GetMovementVector();
+
 		//GD.Print(Velocity);
 
 		// "MoveAndSlide" already takes delta time into account.
@@ -41,12 +92,22 @@ public partial class Player : CharacterBody2D
 		}
 		if (Input.IsActionPressed(MovementDirection.Left))
 		{
-			translatedVector += Vector2.Left;
-		}
+            translatedVector += Vector2.Left;
+
+            //face left
+            WalkAnim.FlipH = false;
+            IdleAnim.FlipH = false;
+            PunchAnim.FlipH = false;
+        }
 		if (Input.IsActionPressed(MovementDirection.Right))
 		{
 			translatedVector += Vector2.Right;
-		}
+
+            //face right
+            WalkAnim.FlipH = true;
+            IdleAnim.FlipH = true;
+            PunchAnim.FlipH = true;
+        }
 
 		translatedVector = translatedVector.Normalized();
 		translatedVector *= Speed;

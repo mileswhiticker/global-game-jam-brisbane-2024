@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://454lsmdjxrv3"]
+
+[ext_resource type="Texture2D" uid="uid://bmyxs6f6t1jti" path="res://Textures/blue_stickman_idle0.png" id="1_g43p7"]
+[ext_resource type="Texture2D" uid="uid://cyfr0c8e1dap2" path="res://Textures/blue_stickman_idle1.png" id="2_j31d7"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g43p7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j31d7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
