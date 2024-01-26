@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cxuxhubdk38mf" path="res://Textures/blue stickman.png" id="2_grffi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2juux"]
-size = Vector2(111, 151)
+size = Vector2(55, 97)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ayk"]
 size = Vector2(43, 137)
@@ -13,13 +13,9 @@ size = Vector2(43, 137)
 script = ExtResource("1_qepup")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -3.5)
 shape = SubResource("RectangleShape2D_2juux")
 metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerCollision"]
-position = Vector2(7.62939e-06, 0.0625153)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_grffi")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -27,3 +23,8 @@ texture = ExtResource("2_grffi")
 position = Vector2(89, 2)
 shape = SubResource("RectangleShape2D_i0ayk")
 disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.62939e-06, 0.0625153)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_grffi")
