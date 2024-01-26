@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Text;
 
-public partial class mob_spawner : Node
+public partial class MobController : Node
 {
 	[Export]
 	public PackedScene EnemyScene;
