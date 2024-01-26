@@ -1,13 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx3siqxgfp4xn"]
+[gd_scene load_steps=5 format=3 uid="uid://cx3siqxgfp4xn"]
 
-[ext_resource type="Texture2D" uid="uid://c12tx4iqbfl2w" path="res://white.png" id="1_du86f"]
 [ext_resource type="Script" path="res://Player.cs" id="1_oaj4x"]
+[ext_resource type="Texture2D" uid="uid://cxuxhubdk38mf" path="res://Textures/blue stickman.png" id="2_grffi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2juux"]
 size = Vector2(111, 151)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_vpbfl"]
-diffuse_texture = ExtResource("1_du86f")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ayk"]
 size = Vector2(43, 137)
@@ -23,8 +20,8 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/PlayerCollision"]
 position = Vector2(7.62939e-06, 0.0625153)
-scale = Vector2(0.504546, 0.392533)
-texture = SubResource("CanvasTexture_vpbfl")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_grffi")
 
 [node name="Area2D" type="Area2D" parent="CharacterBody2D"]
 
