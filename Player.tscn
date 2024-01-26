@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx3siqxgfp4xn"]
+[gd_scene load_steps=8 format=3 uid="uid://cx3siqxgfp4xn"]
 
 [ext_resource type="Texture2D" uid="uid://c12tx4iqbfl2w" path="res://white.png" id="1_du86f"]
 [ext_resource type="Script" path="res://Player.cs" id="1_oaj4x"]
+[ext_resource type="Script" path="res://HurtboxArea.cs" id="3_o8rrb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2juux"]
 size = Vector2(111, 151)
@@ -12,23 +13,35 @@ diffuse_texture = ExtResource("1_du86f")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ayk"]
 size = Vector2(43, 137)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43ktm"]
+size = Vector2(111.5, 151.5)
+
 [node name="Player" type="Node2D"]
 script = ExtResource("1_oaj4x")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="MoveCollision" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_2juux")
-metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/PlayerCollision"]
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/MoveCollision"]
 position = Vector2(7.62939e-06, 0.0625153)
 scale = Vector2(0.504546, 0.392533)
 texture = SubResource("CanvasTexture_vpbfl")
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+[node name="AttackArea" type="Area2D" parent="CharacterBody2D"]
 
-[node name="AttackCollision" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+[node name="AttackCollision" type="CollisionShape2D" parent="CharacterBody2D/AttackArea"]
 position = Vector2(89, 2)
 shape = SubResource("RectangleShape2D_i0ayk")
 disabled = true
+
+[node name="HurtboxArea" type="Area2D" parent="CharacterBody2D"]
+script = ExtResource("3_o8rrb")
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="CharacterBody2D/HurtboxArea"]
+position = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_43ktm")
+disabled = true
+
+[connection signal="body_shape_entered" from="CharacterBody2D/HurtboxArea" to="." method="_on_hurtbox_area_body_shape_entered"]
