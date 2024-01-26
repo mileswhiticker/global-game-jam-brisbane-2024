@@ -17,6 +17,6 @@ public partial class EnemyArea2D : Area2D
 
 	private void _on_body_shape_entered(CollisionObject2D collisionObject, Node2D body, int bodyShapeIndex, int localShapeIndex)
 	{
-		GD.Print("Body shape entered.");
+		//GD.Print("Body shape entered.");
 	}
 }

@@ -15,7 +15,7 @@ public partial class Enemy : CharacterBody2D
 
 	public void MoveTo(Vector2 newPos)
 	{
-        GD.Print("Enemy::MoveTo(" + newPos.X + "," + newPos.Y + ")");
+        //GD.Print("Enemy::MoveTo(" + newPos.X + "," + newPos.Y + ")");
         Position = newPos;
 	}
 

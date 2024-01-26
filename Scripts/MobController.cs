@@ -22,7 +22,7 @@ public partial class MobController : Node
 		tLeftSpawnEnemy -= delta;
 		if(tLeftSpawnEnemy < 0)
         {
-            GD.Print("spawning enemy");
+            //GD.Print("spawning enemy");
             tLeftSpawnEnemy = enemySpawnInterval;
 			SpawnEnemy();
         }
