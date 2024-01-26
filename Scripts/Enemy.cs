@@ -59,11 +59,12 @@ public partial class Enemy : CharacterBody2D
             }
         }
     }
+
     public void _on_screen_exited()
     {
         //die
         //GD.Print("Goodbye");
-        //GGJ.mobController.KillEnemy(this);
+        GGJ.mobController.KillEnemy(this);
     }
 
     public bool isPunching()
