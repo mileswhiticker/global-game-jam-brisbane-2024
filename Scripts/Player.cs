@@ -12,7 +12,9 @@ public partial class Player : CharacterBody2D
     [Export] AnimatedSprite2D PunchAnim;
     [Export] AnimatedSprite2D IdleAnim;
 
-	[Export] Area2D PunchArea2D;
+	[Export] float PunchOffsetDist = 45;
+    [Export] Area2D PunchArea2D;
+    [Export] CollisionShape2D PunchShape2D;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -41,9 +43,6 @@ public partial class Player : CharacterBody2D
         //first, only change the animation if we arent punching
         if (!PunchAnim.IsPlaying())
 		{
-			//putting this here because im too lazy to setup signals
-			PunchAnim.Visible = false;
-
 			//are we moving?
 			//GD.Print(Velocity.LengthSquared());
             if (Velocity.LengthSquared() > 0.1)
@@ -100,20 +99,12 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed(MovementDirection.Left))
 		{
             translatedVector += Vector2.Left;
-
-            //face left
-            WalkAnim.FlipH = false;
-            IdleAnim.FlipH = false;
-            PunchAnim.FlipH = true;
+            SetFacingRight(false);
         }
 		if (Input.IsActionPressed(MovementDirection.Right))
 		{
 			translatedVector += Vector2.Right;
-
-            //face right
-            WalkAnim.FlipH = true;
-            IdleAnim.FlipH = true;
-            PunchAnim.FlipH = false;
+			SetFacingRight(true);
         }
 
 		translatedVector = translatedVector.Normalized();
@@ -123,11 +114,31 @@ public partial class Player : CharacterBody2D
 
 	}
 
+	public void SetFacingRight(bool faceRight)
+    {
+        WalkAnim.FlipH = faceRight;
+        IdleAnim.FlipH = faceRight;
+        PunchAnim.FlipH = !faceRight;
+
+		if (faceRight)
+        {
+            PunchShape2D.Position = new Vector2(PunchOffsetDist, 0);
+        }
+        else
+        {
+            PunchShape2D.Position = new Vector2(-PunchOffsetDist, 0);
+        }
+    }
+
 	public void TryPunchAttack()
     {
 		//are we already punching?
         if (!PunchAnim.IsPlaying())
         {
+            //enable punch hitbox
+            PunchArea2D.Monitorable = true;
+            PunchArea2D.Monitoring = true;
+
             //enable punch anim
             PunchAnim.Visible = true;
             PunchAnim.Play();
@@ -140,6 +151,13 @@ public partial class Player : CharacterBody2D
             IdleAnim.Stop();
             IdleAnim.Visible = false;
         }
+    }
+
+    public void FinishPunchAttack()
+    {
+        PunchAnim.Visible = false;
+        PunchArea2D.Monitorable = false;
+        PunchArea2D.Monitoring = false;
     }
 
 	[Signal] public delegate void HitPlayerEventHandler();
