@@ -29,7 +29,7 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
     {
-        //MoveAndSlide();
+        MoveAndSlide();
     }
 
 	public void RecievePunch(float damage)
@@ -47,5 +47,11 @@ public partial class Enemy : CharacterBody2D
                 QueueFree();
             }
         }
+    }
+    public void _on_screen_exited()
+    {
+        //die
+        //GD.Print("Goodbye");
+        QueueFree();
     }
 }
