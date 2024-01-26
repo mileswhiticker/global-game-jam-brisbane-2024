@@ -6,7 +6,8 @@ using System.ComponentModel.Design;
 public partial class Player : CharacterBody2D
 {
 	[Export] public int Speed { get; set; } = 500;
-	[Export] public float Health { get; set; } = 100;
+	[Export] public float HealthMax { get; set; } = 5;
+    private float Health = 20;
     [Export] public float BaseDamage { get; set; } = 1;
 
     [Export] AnimatedSprite2D WalkAnim;
@@ -29,6 +30,9 @@ public partial class Player : CharacterBody2D
         //have these playing in the background
 		IdleAnim.Play();
         WalkAnim.Play();
+
+        //some misc settings
+        Health = HealthMax;
 
         //these are now set in the editor, but ive left them here as an example of how to do it in code
         /*
@@ -160,7 +164,7 @@ public partial class Player : CharacterBody2D
 
                 //this is safe so long as the collision masks are properly setup
                 Enemy punchedEnemy = (Enemy)checkNode;
-                punchedEnemy.RecievePunch(BaseDamage);
+                punchedEnemy.ReceivePunch(BaseDamage);
             }
 
             //enable punch anim
@@ -172,6 +176,25 @@ public partial class Player : CharacterBody2D
 
             //disable idle anim
             IdleAnim.Visible = false;
+        }
+    }
+
+    public void ReceivePunch(float damage)
+    {
+        if (Health > 0)
+        {
+            Health -= damage;
+            GD.Print("Ow! Health: " + Health + "/" + HealthMax);
+
+            if (Health <= 0)
+            {
+                //die
+                GD.Print("You have died!");
+            }
+        }
+        else
+        {
+            GD.Print("Ow!");
         }
     }
 

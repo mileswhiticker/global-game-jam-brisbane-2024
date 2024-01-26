@@ -11,12 +11,13 @@ height = 104.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ica2o"]
 radius = 45.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("WalkAnim", "PunchAnim")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("WalkAnim", "PunchAnim", "PunchArea2D")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_5wm75")
 WalkAnim = NodePath("WalkAnim")
 PunchAnim = NodePath("PunchAnim")
+PunchArea2D = NodePath("PunchArea2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_grlua")

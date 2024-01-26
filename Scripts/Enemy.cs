@@ -11,6 +11,9 @@ public partial class Enemy : CharacterBody2D
     [Export] AnimatedSprite2D WalkAnim;
     [Export] AnimatedSprite2D PunchAnim;
 
+    [Export] float BaseDamage = 1f;
+    [Export] Area2D PunchArea2D;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -40,7 +43,7 @@ public partial class Enemy : CharacterBody2D
         MoveAndSlide();
     }
 
-	public void RecievePunch(float damage)
+	public void ReceivePunch(float damage)
 	{
         if (GGJ.CurrentPunchID != RecievedPunchID && health > 0)
         {
@@ -70,6 +73,19 @@ public partial class Enemy : CharacterBody2D
 
     public void tryPunch()
     {
+        //loop over all the overlapping enemies and apply a punch
+        Godot.Collections.Array<Node2D> overlappingNodes = PunchArea2D.GetOverlappingBodies();
+        foreach (Node2D checkNode in overlappingNodes)
+        {
+            //PhysicsBody2D physicsBody = (PhysicsBody2D)checkNode;
+            //GD.Print(checkNode.Name + " " + physicsBody.CollisionLayer + "/" + physicsBody.CollisionMask);
+
+            //this is safe so long as the collision masks are properly setup
+            Player punchedPlayer = (Player)checkNode;
+            punchedPlayer.ReceivePunch(BaseDamage);
+        }
+
+        //play the correct animation
         PunchAnim.Play();
         PunchAnim.Visible = true;
         WalkAnim.Visible = false;
