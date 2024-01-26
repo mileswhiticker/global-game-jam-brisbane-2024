@@ -5,11 +5,7 @@ using globalgamejam2024.Shared;
 public partial class Player : Node2D
 {
 	[Export] public int Speed { get; set; } = 500;
-	
-	public override void _Ready()
-	{
-		
-	}
+	[Export] public float Health { get; set; } = 100;
 
 	public override void _Process(double delta)
 	{
@@ -43,4 +39,6 @@ public partial class Player : Node2D
 
 		return translatedVector;
 	}
+	
+	[Signal] public delegate void HitPlayerEventHandler();
 }
