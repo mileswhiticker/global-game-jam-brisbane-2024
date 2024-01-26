@@ -40,5 +40,7 @@ public partial class Player : Node2D
 		{
 			translatedVector += Vector2.Right;
 		}
+
+		return translatedVector;
 	}
 }
