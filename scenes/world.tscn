@@ -14,9 +14,15 @@ script = ExtResource("1_4qkbh")
 script = ExtResource("2_ppah5")
 EnemyScene = ExtResource("2_0ddkv")
 
-[node name="EnvironmentController" type="Node" parent="."]
+[node name="EnvironmentController" type="Node" parent="." node_paths=PackedStringArray("TopWallHolder", "BottomWallHolder")]
 script = ExtResource("6_b4bdr")
 WallScene = ExtResource("4_c2rog")
+TopWallHolder = NodePath("../TopWallHolder")
+BottomWallHolder = NodePath("../BottomWallHolder")
+
+[node name="TopWallHolder" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("3_16fe4")]
 position = Vector2(675, 382)
+
+[node name="BottomWallHolder" type="Node" parent="."]
