@@ -6,11 +6,11 @@
 [ext_resource type="SpriteFrames" uid="uid://454lsmdjxrv3" path="res://Textures/player_idle.tres" id="5_rj76q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxuph"]
-radius = 20.5
-height = 87.0
+radius = 25.83
+height = 92.33
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ayk"]
-size = Vector2(73.5, 89)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vppp"]
+radius = 45.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("WalkAnim", "PunchAnim", "IdleAnim", "PunchArea2D", "PunchShape2D")]
 collision_layer = 2
@@ -24,7 +24,6 @@ PunchArea2D = NodePath("PunchArea2D")
 PunchShape2D = NodePath("PunchArea2D/PunchShape2D")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 1.5)
 shape = SubResource("CapsuleShape2D_yxuph")
 metadata/_edit_group_ = true
 
@@ -33,8 +32,8 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="PunchShape2D" type="CollisionShape2D" parent="PunchArea2D"]
-position = Vector2(29.75, 1.5)
-shape = SubResource("RectangleShape2D_i0ayk")
+position = Vector2(26, 0)
+shape = SubResource("CircleShape2D_8vppp")
 
 [node name="AnimPlayerPunch" type="AnimatedSprite2D" parent="."]
 visible = false
