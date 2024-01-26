@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cx3siqxgfp4xn"]
 
-[ext_resource type="Script" path="res://Player.cs" id="1_oaj4x"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_qepup"]
 [ext_resource type="Texture2D" uid="uid://cxuxhubdk38mf" path="res://Textures/blue stickman.png" id="2_grffi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2juux"]
@@ -10,7 +10,7 @@ size = Vector2(111, 151)
 size = Vector2(43, 137)
 
 [node name="Player" type="Node2D"]
-script = ExtResource("1_oaj4x")
+script = ExtResource("1_qepup")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 

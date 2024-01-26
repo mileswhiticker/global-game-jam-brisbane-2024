@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgkdpxt1fyeph"]
+
+[ext_resource type="Script" path="res://Scripts/mob_spawner.cs" id="1_5ve1c"]
+[ext_resource type="PackedScene" uid="uid://d2o8vtt7gkme1" path="res://Scenes/Enemy.tscn" id="2_0ddkv"]
+[ext_resource type="PackedScene" uid="uid://cx3siqxgfp4xn" path="res://Scenes/Player.tscn" id="3_16fe4"]
+
+[node name="world" type="Node2D"]
+
+[node name="mob_spawner" type="Node" parent="."]
+script = ExtResource("1_5ve1c")
+EnemyScene = ExtResource("2_0ddkv")
+
+[node name="Player" parent="." instance=ExtResource("3_16fe4")]
+position = Vector2(675, 382)
