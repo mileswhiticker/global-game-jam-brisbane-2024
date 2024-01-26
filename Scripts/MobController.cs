@@ -6,8 +6,11 @@ using System.Collections.Generic;
 
 public partial class MobController : Node
 {
-    [Export] public double tLeftSpawnEnemy = 0.5f;
-    [Export] public double enemySpawnInterval = 3.0f;
+    public double tLeftSpawnEnemy = 0.5f;
+    protected int enemiesSpawnLeft = 10;
+    [Export] public double enemySpawnInterval = 1.0f;
+    [Export] public int enemiesPerWave = 12;
+    [Export] protected int enemiesMax = 6;
 
     [Export] public double basePunchRate = 1.0f;
     [Export] public double tLeftPunch = 1.0f;
@@ -23,17 +26,26 @@ public partial class MobController : Node
     public override void _Ready()
 	{
         GGJ.mobController = this;
+
+        //some misc settings
+        enemiesSpawnLeft = enemiesPerWave;
+        tLeftSpawnEnemy = enemySpawnInterval;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		tLeftSpawnEnemy -= delta;
+        if(spawnedEnemies.Count < enemiesMax)
+        {
+            tLeftSpawnEnemy -= delta;
+        }
+
 		if(tLeftSpawnEnemy < 0)
         {
             //GD.Print("spawning enemy");
             tLeftSpawnEnemy = enemySpawnInterval;
 			SpawnEnemy();
+            enemiesSpawnLeft--;
         }
 
         tLeftPunch -= delta;
