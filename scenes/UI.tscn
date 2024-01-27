@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh8otnq5yjasw"]
+
+[ext_resource type="Script" path="res://scenes/UI.cs" id="1_1qi2e"]
+
+[node name="UI" type="Node"]
+script = ExtResource("1_1qi2e")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 100.0

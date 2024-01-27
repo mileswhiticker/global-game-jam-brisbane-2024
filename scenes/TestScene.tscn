@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b67qbncwftkau"]
 
-[ext_resource type="PackedScene" uid="uid://cx3siqxgfp4xn" path="res://Scenes/Player.tscn" id="1_xl11y"]
+[ext_resource type="PackedScene" path="res://Scenes/Player.tscn" id="1_xl11y"]
 [ext_resource type="PackedScene" uid="uid://bwsgiajpwgtl0" path="res://scenes/Chicken.tscn" id="2_28ak8"]
 [ext_resource type="Script" path="res://Scripts/MobController.cs" id="3_4nwfm"]
 
