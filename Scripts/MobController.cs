@@ -20,7 +20,7 @@ public partial class MobController : Node
     List<Enemy> readyEnemies = new List<Enemy>();
     List<Enemy> tiredEnemies = new List<Enemy>();
 
-    Random random = new Random();
+    
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -67,11 +67,16 @@ public partial class MobController : Node
 
             //pick a random enemy to punch
             Enemy punchingEnemy = readyEnemies[readyEnemies.Count - 1];
+
+            //was the punch successful?
+            if(punchingEnemy.tryPunch())
+            {
+                //
+            }
             readyEnemies.RemoveAt(readyEnemies.Count - 1);
-            punchingEnemy.tryPunch();
 
             //move them to a random spot on the "tired" list
-            int index = random.Next(tiredEnemies.Count);
+            int index = GGJ.random.Next(tiredEnemies.Count);
             tiredEnemies.Insert(index, punchingEnemy);
 
             //how long is the cooldown until the next punch?

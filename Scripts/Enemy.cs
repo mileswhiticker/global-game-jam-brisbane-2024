@@ -12,8 +12,8 @@ public partial class Enemy : CharacterBody2D
     protected int MeleeRange = 50;
     protected int MeleeRangeSqrd = 50 * 50;
 
-    [Export] float IdleTime = 0.5f;
-    float tLeftIdle = 0.5f;
+    [Export] double IdleTime = 0.5f;
+    double tLeftIdle = 0f;
 
     [Export] AnimatedSprite2D IdleAnim;
     [Export] AnimatedSprite2D WalkAnim;
@@ -27,7 +27,6 @@ public partial class Enemy : CharacterBody2D
     {
         //some basic settings
         Health = MaxHealth;
-        tLeftIdle = IdleTime;
 
         //initial animation settings
         WalkAnim.Play();
@@ -38,7 +37,16 @@ public partial class Enemy : CharacterBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
     {
-        //
+        if (tLeftIdle > 0)
+        {
+            tLeftIdle -= delta;
+            if (tLeftIdle <= 0)
+            {
+                WalkAnim.Visible = true;
+                IdleAnim.Visible = false;
+                tLeftIdle = 0;
+            }
+        }
     }
 
     public void MoveTo(Vector2 newPos)
@@ -49,23 +57,43 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
     {
+        //are we idling?
+        if(tLeftIdle > 0)
+        {
+            return;
+        }
+
         //where is the player?
         Vector2 moveVector = new Vector2();
         if ((GGJ.player.Position - Position).LengthSquared() > MeleeRangeSqrd)
         {
             moveVector = (GGJ.player.Position - Position).Normalized() * Speed * (float)delta;
-            WalkAnim.Visible = true;
-            IdleAnim.Visible = false;
+            //WalkAnim.Visible = true;
+            //IdleAnim.Visible = false;
         }
         else
         {
+            //WalkAnim.Visible = false;
+            //IdleAnim.Visible = true;
+        }
+        KinematicCollision2D collisionInfo = MoveAndCollide(moveVector);
+
+        //if we bumped into something, go idle for a short while
+        if(collisionInfo != null && GGJ.random.Next(2) == 1) 
+        {
+            GoIdle();
             WalkAnim.Visible = false;
             IdleAnim.Visible = true;
         }
-        KinematicCollision2D collisionInfo = MoveAndCollide(moveVector);
     }
 
-	public void ReceivePunch(float damage)
+    public void GoIdle()
+    {
+        tLeftIdle = IdleTime;
+    }
+
+
+    public void ReceivePunch(float damage)
 	{
         if (GGJ.CurrentPunchID != RecievedPunchID && Health > 0)
         {
@@ -94,8 +122,13 @@ public partial class Enemy : CharacterBody2D
         return PunchAnim.IsPlaying();
     }
 
-    public void tryPunch()
+    public bool tryPunch()
     {
+        //are we idling?
+        if (tLeftIdle > 0)
+        {
+            return false;
+        }
         //loop over all the overlapping enemies and apply a punch
         Godot.Collections.Array<Node2D> overlappingNodes = PunchArea2D.GetOverlappingBodies();
         foreach (Node2D checkNode in overlappingNodes)
@@ -112,6 +145,8 @@ public partial class Enemy : CharacterBody2D
         PunchAnim.Play();
         PunchAnim.Visible = true;
         WalkAnim.Visible = false;
+
+        return true;
     }
 
     public void _on_punch_anim_finish()
