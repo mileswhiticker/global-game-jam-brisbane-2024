@@ -6,11 +6,16 @@ public partial class Enemy : CharacterBody2D
 {
 	//only take damage from a punch once
 	protected int RecievedPunchID = 0;
-    protected float health = 1;
+    protected float Health = 1;
     [Export] float MaxHealth = 1f;
     [Export] public int Speed { get; set; } = 150;
     protected int MeleeRange = 50;
+    protected int MeleeRangeSqrd = 50 * 50;
 
+    [Export] float IdleTime = 0.5f;
+    float tLeftIdle = 0.5f;
+
+    [Export] AnimatedSprite2D IdleAnim;
     [Export] AnimatedSprite2D WalkAnim;
     [Export] AnimatedSprite2D PunchAnim;
 
@@ -21,19 +26,19 @@ public partial class Enemy : CharacterBody2D
     public override void _Ready()
     {
         //some basic settings
-        health = MaxHealth;
+        Health = MaxHealth;
+        tLeftIdle = IdleTime;
 
         //initial animation settings
         WalkAnim.Play();
+        IdleAnim.Play();
         PunchAnim.Visible = false;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
     {
-        //where is the player?
-        Vector2 moveVector = (GGJ.player.Position - Position).Normalized() * Speed;
-        Velocity = moveVector;
+        //
     }
 
     public void MoveTo(Vector2 newPos)
@@ -44,19 +49,32 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
     {
-        MoveAndSlide();
+        //where is the player?
+        Vector2 moveVector = new Vector2();
+        if ((GGJ.player.Position - Position).LengthSquared() > MeleeRangeSqrd)
+        {
+            moveVector = (GGJ.player.Position - Position).Normalized() * Speed * (float)delta;
+            WalkAnim.Visible = true;
+            IdleAnim.Visible = false;
+        }
+        else
+        {
+            WalkAnim.Visible = false;
+            IdleAnim.Visible = true;
+        }
+        KinematicCollision2D collisionInfo = MoveAndCollide(moveVector);
     }
 
 	public void ReceivePunch(float damage)
 	{
-        if (GGJ.CurrentPunchID != RecievedPunchID && health > 0)
+        if (GGJ.CurrentPunchID != RecievedPunchID && Health > 0)
         {
 			//only process a hit once per punch
             RecievedPunchID = GGJ.CurrentPunchID;
             //GD.Print("Ow! " + RecievedPunchID);
-            health -= damage;
+            Health -= damage;
 
-            if(health <= 0)
+            if(Health <= 0)
             {
                 //die
                 GGJ.mobController.KillEnemy(this);
