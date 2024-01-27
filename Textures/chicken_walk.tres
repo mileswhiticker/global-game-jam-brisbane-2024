@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b6po8pvdxf7xr"]
+
+[ext_resource type="Texture2D" uid="uid://bi4gqnkk2y4mm" path="res://Textures/chicken_walk_1.png" id="1_220bd"]
+[ext_resource type="Texture2D" uid="uid://tqqr0has8d2p" path="res://Textures/chicken_walk_2.png" id="2_mm0er"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_220bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mm0er")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

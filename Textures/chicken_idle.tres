@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://dg7f6qh5p5l6r"]
+
+[ext_resource type="Texture2D" uid="uid://be3lg8re73jwn" path="res://Textures/chicken_idle.png" id="1_d5kxy"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d5kxy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
