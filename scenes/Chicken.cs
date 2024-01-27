@@ -1,9 +1,8 @@
-using globalgamejam2024.Shared;
 using Godot;
 using System;
-using System.Collections.Generic;
+using globalgamejam2024.Shared;
 
-public partial class Enemy : CharacterBody2D
+public partial class Chicken : CharacterBody2D
 {
 	//only take damage from a punch once
 	protected int ReceivedPunchID = 0;
@@ -109,7 +108,7 @@ public partial class Enemy : CharacterBody2D
             if(Health <= 0)
             {
                 //die
-                GGJ.mobController.KillEnemy(this);
+                //GGJ.mobController.KillEnemy(this);
             }
         }
     }
@@ -118,7 +117,7 @@ public partial class Enemy : CharacterBody2D
     {
         //die
         //GD.Print("Goodbye");
-        GGJ.mobController.KillEnemy(this);
+        //GGJ.mobController.KillEnemy(this);
     }
 
     public bool isPunching()
@@ -141,11 +140,8 @@ public partial class Enemy : CharacterBody2D
             //GD.Print(checkNode.Name + " " + physicsBody.CollisionLayer + "/" + physicsBody.CollisionMask);
 
             //this is safe so long as the collision masks are properly setup
-            if(checkNode.Name == "Player")
-            {
-                Player punchedPlayer = (Player)checkNode;
-                punchedPlayer.ReceivePunch(BaseDamage);
-            }
+            Player punchedPlayer = (Player)checkNode;
+            punchedPlayer.ReceivePunch(BaseDamage);
         }
 
         //play the correct animation

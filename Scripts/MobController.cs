@@ -15,10 +15,10 @@ public partial class MobController : Node
     [Export] public double basePunchRate = 1.0f;
     [Export] public double tLeftPunch = 1.0f;
 
-    [Export] public PackedScene EnemyScene;
-    List<Enemy> spawnedEnemies = new List<Enemy>();
-    List<Enemy> readyEnemies = new List<Enemy>();
-    List<Enemy> tiredEnemies = new List<Enemy>();
+    [Export] public Godot.Collections.Array<PackedScene> EnemyScene = new();
+    List<Enemy> spawnedEnemies = new();
+    List<Enemy> readyEnemies = new();
+    List<Enemy> tiredEnemies = new();
 
     protected bool IsSpawning = false;
 
@@ -79,7 +79,7 @@ public partial class MobController : Node
             Enemy punchingEnemy = readyEnemies[readyEnemies.Count - 1];
 
             //was the punch successful?
-            if(punchingEnemy.tryPunch())
+            if(punchingEnemy.TryAttack())
             {
                 //
             }
@@ -102,15 +102,14 @@ public partial class MobController : Node
 
 	protected void SpawnEnemy()
     {
-        if (EnemyScene != null)
-        {
-            Enemy mob = (Enemy)EnemyScene.Instantiate();
-            AddChild(mob);
-            Vector2 spawnPos = GetNextSpawnPos();
-            mob.MoveTo(spawnPos);
-            spawnedEnemies.Add(mob);
-            tiredEnemies.Add(mob);
-        }
+        if (EnemyScene == null) return;
+        
+        Enemy mob = (Enemy)EnemyScene[GGJ.random.Next(EnemyScene.Count)].Instantiate();
+        AddChild(mob);
+        Vector2 spawnPos = GetNextSpawnPos();
+        mob.MoveTo(spawnPos);
+        spawnedEnemies.Add(mob);
+        tiredEnemies.Add(mob);
     }
 
     protected Vector2 GetNextSpawnPos()

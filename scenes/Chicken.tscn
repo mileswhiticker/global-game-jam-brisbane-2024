@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxa2qbhmfk7rc"]
+[gd_scene load_steps=7 format=3 uid="uid://bwsgiajpwgtl0"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_5wm75"]
+[ext_resource type="Script" path="res://Scenes/Chicken.cs" id="1_ox26y"]
 [ext_resource type="SpriteFrames" uid="uid://cw2en3wqc562b" path="res://Textures/enemy_walk.tres" id="2_2au2n"]
 [ext_resource type="SpriteFrames" uid="uid://cq073qm4tbii0" path="res://Textures/enemy_punch.tres" id="2_ddj17"]
 [ext_resource type="SpriteFrames" uid="uid://bt7r4xq35ybrv" path="res://Textures/enemy_idle.tres" id="4_t5a3i"]
@@ -11,14 +11,10 @@ radius = 40.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ica2o"]
 radius = 45.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("IdleAnim", "WalkAnim", "PunchAnim", "PunchArea2D")]
+[node name="Chicken" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("1_5wm75")
-IdleAnim = NodePath("IdleAnim")
-WalkAnim = NodePath("WalkAnim")
-PunchAnim = NodePath("PunchAnim")
-PunchArea2D = NodePath("PunchArea2D")
+script = ExtResource("1_ox26y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 40)

@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "global game jam 2024", "global game jam 2024.csproj", "{36400E56-A6A5-4904-9642-72455563AF3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "global game jam 2024", "global game jam 2024.csproj", "{91690740-4E96-4F7F-A197-D6448DF7129A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{36400E56-A6A5-4904-9642-72455563AF3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36400E56-A6A5-4904-9642-72455563AF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36400E56-A6A5-4904-9642-72455563AF3D}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{36400E56-A6A5-4904-9642-72455563AF3D}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{36400E56-A6A5-4904-9642-72455563AF3D}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{36400E56-A6A5-4904-9642-72455563AF3D}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{91690740-4E96-4F7F-A197-D6448DF7129A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91690740-4E96-4F7F-A197-D6448DF7129A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91690740-4E96-4F7F-A197-D6448DF7129A}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{91690740-4E96-4F7F-A197-D6448DF7129A}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{91690740-4E96-4F7F-A197-D6448DF7129A}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{91690740-4E96-4F7F-A197-D6448DF7129A}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal
