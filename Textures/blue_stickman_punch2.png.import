@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c12tx4iqbfl2w"
-path="res://.godot/imported/white.png-d8533361663a5f8fe5200e5b5262a62d.ctex"
+uid="uid://bxmh2px08fdli"
+path="res://.godot/imported/blue_stickman_punch2.png-2c150eb31952ea761002636703f2d629.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://white.png"
-dest_files=["res://.godot/imported/white.png-d8533361663a5f8fe5200e5b5262a62d.ctex"]
+source_file="res://Textures/blue_stickman_punch2.png"
+dest_files=["res://.godot/imported/blue_stickman_punch2.png-2c150eb31952ea761002636703f2d629.ctex"]
 
 [params]
 

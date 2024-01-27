@@ -16,3 +16,8 @@ mono_crash.*.json
 
 # Rider ignores
 *.idea
+
+# Visual studio ignores
+.vs/
+*.csproj
+*.sln

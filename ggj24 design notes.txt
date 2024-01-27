@@ -1,0 +1,24 @@
+enemies
+- periodically spawn (conditions?)
+- move randomly
+- attack randomly
+- bonus: enemies move towards player
+-- not swarm player too badly
+-- maintain striking distance
+- health meter
+- player death and game over
+
+player
+- walking controls
+- basic punch attack
+- bonus: block
+-- combo strike
+- bonus: dodge
+
+world:
+- environment textures
+- scrolling world
+- premade level loaded from text?
+
+other bonus features:
+- elevation

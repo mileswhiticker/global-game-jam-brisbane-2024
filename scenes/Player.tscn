@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cx3siqxgfp4xn"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_qepup"]
+[ext_resource type="SpriteFrames" uid="uid://cstcmsdjd4e8g" path="res://Textures/player_punch.tres" id="3_arkxf"]
+[ext_resource type="SpriteFrames" uid="uid://dfmc763buqcwo" path="res://Textures/player_walk.tres" id="4_hks7x"]
+[ext_resource type="SpriteFrames" uid="uid://454lsmdjxrv3" path="res://Textures/player_idle.tres" id="5_rj76q"]
+[ext_resource type="SpriteFrames" uid="uid://b72i1m0ynn7mg" path="res://Textures/player_dodge.tres" id="5_vs3w8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lf6q1"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vppp"]
+radius = 45.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("WalkAnim", "PunchAnim", "IdleAnim", "DodgeAnim", "PunchArea2D", "PunchShape2D")]
+collision_layer = 2
+collision_mask = 2
+up_direction = Vector2(0, 1)
+script = ExtResource("1_qepup")
+WalkAnim = NodePath("AnimPlayerWalk")
+PunchAnim = NodePath("AnimPlayerPunch")
+IdleAnim = NodePath("AnimPlayerIdle")
+DodgeAnim = NodePath("AnimPlayerDodge")
+PunchArea2D = NodePath("PunchArea2D")
+PunchShape2D = NodePath("PunchArea2D/PunchShape2D")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_lf6q1")
+metadata/_edit_group_ = true
+
+[node name="PunchArea2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="PunchShape2D" type="CollisionShape2D" parent="PunchArea2D"]
+position = Vector2(26, 0)
+shape = SubResource("CircleShape2D_8vppp")
+
+[node name="AnimPlayerPunch" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("3_arkxf")
+
+[node name="AnimPlayerWalk" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("4_hks7x")
+
+[node name="AnimPlayerIdle" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("5_rj76q")
+
+[node name="AnimPlayerDodge" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("5_vs3w8")
+
+[connection signal="animation_finished" from="AnimPlayerPunch" to="." method="FinishPunchAttack"]
