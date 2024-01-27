@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2o8vtt7gkme1"]
+[gd_scene load_steps=7 format=3 uid="uid://bruqegyevurqr"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_5wm75"]
-[ext_resource type="SpriteFrames" uid="uid://cw2en3wqc562b" path="res://Textures/enemy_walk.tres" id="2_2au2n"]
-[ext_resource type="SpriteFrames" uid="uid://cq073qm4tbii0" path="res://Textures/enemy_punch.tres" id="2_ddj17"]
-[ext_resource type="SpriteFrames" uid="uid://bt7r4xq35ybrv" path="res://Textures/enemy_idle.tres" id="4_t5a3i"]
+[ext_resource type="Script" path="res://Scripts/EnemyChicken.cs" id="1_hsfvf"]
+[ext_resource type="SpriteFrames" path="res://Textures/chicken_walk.tres" id="2_m17yi"]
+[ext_resource type="SpriteFrames" uid="uid://ds4v17mj51ct6" path="res://Textures/chicken_attack.tres" id="3_eeyv0"]
+[ext_resource type="SpriteFrames" path="res://Textures/chicken_idle.tres" id="4_62ymn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ay6ls"]
 radius = 40.0
@@ -11,10 +11,10 @@ radius = 40.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ica2o"]
 radius = 45.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("IdleAnim", "WalkAnim", "PunchAnim", "PunchArea2D", "PunchShape2D")]
+[node name="EnemyChicken" type="CharacterBody2D" node_paths=PackedStringArray("IdleAnim", "WalkAnim", "PunchAnim", "PunchArea2D", "PunchShape2D")]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("1_5wm75")
+script = ExtResource("1_hsfvf")
 IdleAnim = NodePath("IdleAnim")
 WalkAnim = NodePath("WalkAnim")
 PunchAnim = NodePath("PunchAnim")
@@ -36,18 +36,20 @@ position = Vector2(30, 2)
 shape = SubResource("CircleShape2D_ica2o")
 
 [node name="WalkAnim" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-sprite_frames = ExtResource("2_2au2n")
+scale = Vector2(-0.1, 0.1)
+sprite_frames = ExtResource("2_m17yi")
+frame = 1
+frame_progress = 0.490099
 
 [node name="PunchAnim" type="AnimatedSprite2D" parent="."]
 visible = false
-scale = Vector2(0.1, 0.1)
-sprite_frames = ExtResource("2_ddj17")
+scale = Vector2(-0.1, 0.1)
+sprite_frames = ExtResource("3_eeyv0")
 
 [node name="IdleAnim" type="AnimatedSprite2D" parent="."]
 visible = false
-scale = Vector2(0.1, 0.1)
-sprite_frames = ExtResource("4_t5a3i")
+scale = Vector2(-0.1, 0.1)
+sprite_frames = ExtResource("4_62ymn")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
 [connection signal="animation_finished" from="PunchAnim" to="." method="_on_punch_anim_finish"]

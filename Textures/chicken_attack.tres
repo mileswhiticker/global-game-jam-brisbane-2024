@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://x1ny0de2xwgr"]
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://ds4v17mj51ct6"]
 
 [ext_resource type="Texture2D" uid="uid://bedavxqy61aij" path="res://Textures/chicken_attack_1.png" id="1_fxaf3"]
 [ext_resource type="Texture2D" uid="uid://cgf40a856nwix" path="res://Textures/chicken_attack_2.png" id="2_k0t67"]
@@ -12,7 +12,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_k0t67")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]

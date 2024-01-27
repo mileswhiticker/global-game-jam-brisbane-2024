@@ -15,7 +15,7 @@ public partial class MobController : Node
     [Export] public double basePunchRate = 1.0f;
     [Export] public double tLeftPunch = 1.0f;
 
-    [Export] public Godot.Collections.Array<PackedScene> EnemyScene = new();
+    [Export] public Godot.Collections.Array<PackedScene> EnemyScenes = new();
     List<Enemy> spawnedEnemies = new();
     List<Enemy> readyEnemies = new();
     List<Enemy> tiredEnemies = new();
@@ -102,9 +102,14 @@ public partial class MobController : Node
 
 	protected void SpawnEnemy()
     {
-        if (EnemyScene == null) return;
-        
-        Enemy mob = (Enemy)EnemyScene[GGJ.random.Next(EnemyScene.Count)].Instantiate();
+        if (EnemyScenes == null || EnemyScenes.Count == 0)
+        {
+            GD.Print("WARNING: No EnemyScenes loaded in MobController");
+            return;
+        }
+
+        int index = GGJ.random.Next(EnemyScenes.Count);
+        Enemy mob = (Enemy)EnemyScenes[index].Instantiate();
         AddChild(mob);
         Vector2 spawnPos = GetNextSpawnPos();
         mob.MoveTo(spawnPos);
