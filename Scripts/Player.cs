@@ -5,7 +5,7 @@ using System.ComponentModel.Design;
 
 public partial class Player : CharacterBody2D
 {
-	[Export] public int Speed { get; set; } = 500;
+	[Export] public int Speed { get; set; } = 300;
 	[Export] public float HealthMax { get; set; } = 5;
     private float Health = 20;
     [Export] public float BaseDamage { get; set; } = 1;
