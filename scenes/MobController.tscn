@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv46hv4h8ftts"]
+
+[ext_resource type="Script" path="res://Scripts/MobController.cs" id="1_s3i0y"]
+[ext_resource type="PackedScene" uid="uid://bruqegyevurqr" path="res://scenes/EnemyChicken.tscn" id="2_n1hh0"]
+[ext_resource type="PackedScene" uid="uid://d2o8vtt7gkme1" path="res://scenes/Enemy.tscn" id="3_drpmg"]
+
+[node name="MobController" type="Node"]
+script = ExtResource("1_s3i0y")
+EnemyScenes = [ExtResource("2_n1hh0"), ExtResource("3_drpmg")]

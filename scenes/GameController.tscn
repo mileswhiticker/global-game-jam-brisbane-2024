@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://df71cux51tuem"]
+
+[ext_resource type="Script" path="res://Scripts/GameController.cs" id="1_lb67r"]
+[ext_resource type="PackedScene" path="res://Scenes/MenuMain.tscn" id="2_gdi6k"]
+[ext_resource type="PackedScene" uid="uid://bgmua3afutjck" path="res://scenes/testing_level.tscn" id="3_y82gn"]
+
+[node name="GameController" type="Node"]
+script = ExtResource("1_lb67r")
+MainMenuScene = ExtResource("2_gdi6k")
+GameScene = ExtResource("3_y82gn")
