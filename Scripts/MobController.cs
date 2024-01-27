@@ -35,7 +35,7 @@ public partial class MobController : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-        if(spawnedEnemies.Count < enemiesMax)
+        if(spawnedEnemies.Count < enemiesMax && enemiesSpawnLeft > 0)
         {
             tLeftSpawnEnemy -= delta;
         }
