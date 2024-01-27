@@ -23,11 +23,13 @@ public partial class Enemy : CharacterBody2D
 
     [Export] public float BaseDamage = 1f;
     [Export] public Area2D PunchArea2D;
+    [Export] float PunchOffsetDist = 30;
+    [Export] CollisionShape2D PunchShape2D;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GD.Print("Enemy ready.");
+        //GD.Print("Enemy ready.");
         
         //some basic settings
         Health = MaxHealth;
@@ -36,6 +38,8 @@ public partial class Enemy : CharacterBody2D
         WalkAnim.Play();
         IdleAnim.Play();
         PunchAnim.Visible = false;
+        IdleAnim.Visible = false;
+        WalkAnim.Visible = true;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,6 +78,15 @@ public partial class Enemy : CharacterBody2D
             moveVector = (GGJ.player.Position - Position).Normalized() * Speed * (float)delta;
             //WalkAnim.Visible = true;
             //IdleAnim.Visible = false;
+
+            if(moveVector.X > 0)
+            {
+                SetFacingRight(true);
+            }
+            else
+            {
+                SetFacingRight(false);
+            }
         }
         else
         {
@@ -154,6 +167,22 @@ public partial class Enemy : CharacterBody2D
         WalkAnim.Visible = false;
 
         return true;
+    }
+
+    public void SetFacingRight(bool faceRight)
+    {
+        WalkAnim.FlipH = !faceRight;
+        IdleAnim.FlipH = !faceRight;
+        PunchAnim.FlipH = !faceRight;
+
+        if (faceRight)
+        {
+            PunchShape2D.Position = new Vector2(PunchOffsetDist, 0);
+        }
+        else
+        {
+            PunchShape2D.Position = new Vector2(-PunchOffsetDist, 0);
+        }
     }
 
     public void _on_punch_anim_finish()

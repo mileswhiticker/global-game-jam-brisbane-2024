@@ -11,7 +11,7 @@ radius = 40.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ica2o"]
 radius = 45.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("IdleAnim", "WalkAnim", "PunchAnim", "PunchArea2D")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("IdleAnim", "WalkAnim", "PunchAnim", "PunchArea2D", "PunchShape2D")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_5wm75")
@@ -19,6 +19,7 @@ IdleAnim = NodePath("IdleAnim")
 WalkAnim = NodePath("WalkAnim")
 PunchAnim = NodePath("PunchAnim")
 PunchArea2D = NodePath("PunchArea2D")
+PunchShape2D = NodePath("PunchArea2D/PunchShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 40)
@@ -30,7 +31,7 @@ shape = SubResource("CircleShape2D_ay6ls")
 collision_layer = 2
 collision_mask = 2
 
-[node name="PunchArea2D" type="CollisionShape2D" parent="PunchArea2D"]
+[node name="PunchShape2D" type="CollisionShape2D" parent="PunchArea2D"]
 position = Vector2(30, 2)
 shape = SubResource("CircleShape2D_ica2o")
 
