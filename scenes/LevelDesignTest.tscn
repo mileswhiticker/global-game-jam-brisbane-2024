@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cndx1nkvi7yv1"]
+
+[ext_resource type="Texture2D" uid="uid://b318x7qnqnx75" path="res://Textures/chicken crossing.png" id="1_hd4ds"]
+[ext_resource type="PackedScene" uid="uid://bruqegyevurqr" path="res://scenes/EnemyChicken.tscn" id="2_26dwo"]
+[ext_resource type="PackedScene" uid="uid://cx3siqxgfp4xn" path="res://scenes/Player.tscn" id="3_wcj0b"]
+[ext_resource type="PackedScene" uid="uid://cv46hv4h8ftts" path="res://scenes/MobController.tscn" id="4_octrx"]
+
+[node name="LevelDesignTest" type="Node2D"]
+
+[node name="MobController" parent="." instance=ExtResource("4_octrx")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(577.646, 326.5)
+scale = Vector2(0.599862, 0.60463)
+texture = ExtResource("1_hd4ds")
+
+[node name="EnemyChicken" parent="." instance=ExtResource("2_26dwo")]
+position = Vector2(882, 362)
+
+[node name="Player" parent="." instance=ExtResource("3_wcj0b")]
+position = Vector2(114, 376)

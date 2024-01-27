@@ -1,19 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6n82ldgox3r8"]
+[gd_scene load_steps=3 format=3 uid="uid://b6n82ldgox3r8"]
 
-[ext_resource type="Script" path="res://Scripts/MobController.cs" id="1_qmpav"]
-[ext_resource type="Script" path="res://Scripts/GameController.cs" id="2_jvl4g"]
-[ext_resource type="PackedScene" uid="uid://d30jd2ll8b5is" path="res://Scenes/MenuMain.tscn" id="3_xd2tw"]
-[ext_resource type="PackedScene" uid="uid://bgmua3afutjck" path="res://Scenes/testing_level.tscn" id="4_omd7f"]
-[ext_resource type="PackedScene" uid="uid://d2o8vtt7gkme1" path="res://Scenes/Enemy.tscn" id="5_vptvp"]
-[ext_resource type="PackedScene" uid="uid://bruqegyevurqr" path="res://Scenes/EnemyChicken.tscn" id="6_u3fvt"]
+[ext_resource type="PackedScene" uid="uid://df71cux51tuem" path="res://scenes/GameController.tscn" id="1_kqujs"]
+[ext_resource type="PackedScene" uid="uid://cv46hv4h8ftts" path="res://scenes/MobController.tscn" id="4_8yw2l"]
 
 [node name="Game" type="Node2D"]
 
-[node name="GameController" type="Node" parent="."]
-script = ExtResource("2_jvl4g")
-MainMenuScene = ExtResource("3_xd2tw")
-GameScene = ExtResource("4_omd7f")
+[node name="GameController" parent="." instance=ExtResource("1_kqujs")]
 
-[node name="MobController" type="Node" parent="."]
-script = ExtResource("1_qmpav")
-EnemyScenes = [ExtResource("6_u3fvt"), ExtResource("5_vptvp")]
+[node name="MobController" parent="." instance=ExtResource("4_8yw2l")]
