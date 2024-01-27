@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cxmp5dse8tat3"]
+
+[ext_resource type="Texture2D" uid="uid://chlbtruu121b3" path="res://Textures/green_stickman_throw0.png" id="1_y6f0s"]
+[ext_resource type="Texture2D" uid="uid://ywwr1dbvultn" path="res://Textures/green_stickman_throw1.png" id="2_cirqx"]
+[ext_resource type="Texture2D" uid="uid://ckkt4a5led564" path="res://Textures/green_stickman_throw2.png" id="3_n8412"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("1_y6f0s")
+}, {
+"duration": 0.5,
+"texture": ExtResource("2_cirqx")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_n8412")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
