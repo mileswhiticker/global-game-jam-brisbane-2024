@@ -10,11 +10,16 @@ public partial class Player : CharacterBody2D
     private float Health = 20;
     [Export] public float BaseDamage { get; set; } = 1;
 
+    [Export] public int DodgeBonusSpeed = 250;
+    [Export] public double DodgeLength = 0.5f;
+    protected double tLeftDodge = 0;
+
     [Export] AnimatedSprite2D WalkAnim;
     [Export] AnimatedSprite2D PunchAnim;
     [Export] AnimatedSprite2D IdleAnim;
+    [Export] AnimatedSprite2D DodgeAnim;
 
-	[Export] float PunchOffsetDist = 45;
+    [Export] float PunchOffsetDist = 45;
     [Export] Area2D PunchArea2D;
     [Export] CollisionShape2D PunchShape2D;
 
@@ -30,6 +35,7 @@ public partial class Player : CharacterBody2D
         //have these playing in the background
 		IdleAnim.Play();
         WalkAnim.Play();
+        DodgeAnim.Play();
 
         //some misc settings
         Health = HealthMax;
@@ -54,14 +60,23 @@ public partial class Player : CharacterBody2D
 		Transform = Transform.Translated(translatedVector);
 		*/
 
+        if(tLeftDodge > 0)
+        {
+            tLeftDodge -= delta;
+            if (tLeftDodge <= 0)
+            {
+                FinishDodge();
+            }
+        }
+
 		if (Input.IsActionPressed(PlayerAction.Punch))
 		{
 			TryPunchAttack();
 		}
 
         //update the animation that is playing
-        //first, only change the animation if we arent punching
-        if (!PunchAnim.IsPlaying())
+        //first, only change the animation if we arent punching or dodging
+        if (!PunchAnim.IsPlaying() && !DodgeAnim.Visible)
 		{
 			//are we moving?
 			//GD.Print(Velocity.LengthSquared());
@@ -92,23 +107,40 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Velocity = GetMovementVector();
+        Vector2 movementVector = GetMovementVector();
+        Velocity = movementVector;
 
-		//GD.Print(Velocity);
+        //GD.Print(Velocity);
 
-		// "MoveAndSlide" already takes delta time into account.
-		 MoveAndSlide();
+        // "MoveAndSlide" already takes delta time into account.
+        //MoveAndSlide();
+
+        //MoveAndCollide() is the same as MoveAndSlide() except we get collision info as well (i think?)
+        KinematicCollision2D collisionInfo = MoveAndCollide(movementVector * (float)delta);
+
+        //if we hit a fence, finish dodge roll early
+        if(collisionInfo != null && tLeftDodge > 0)
+        {
+            FinishDodge();
+        }
 	}
 
 	private Vector2 GetMovementVector()
 	{
+        //if we are dodging, maintain a constant speed and direction
+        if (tLeftDodge > 0)
+        {
+            return Velocity;
+        }
+
 		var translatedVector = Vector2.Zero;
-		
-		if (Input.IsActionPressed(MovementDirection.Up))
-		{
-			translatedVector += Vector2.Up;
-		}
-		if (Input.IsActionPressed(MovementDirection.Down))
+        var calculatedSpeed = Speed;
+
+        if (Input.IsActionPressed(MovementDirection.Up))
+        {
+            translatedVector += Vector2.Up;
+        }
+        if (Input.IsActionPressed(MovementDirection.Down))
 		{
 			translatedVector += Vector2.Down;
 		}
@@ -122,15 +154,39 @@ public partial class Player : CharacterBody2D
 			translatedVector += Vector2.Right;
 			SetFacingRight(true);
         }
+        if (Input.IsActionPressed(PlayerAction.Dodge) && translatedVector.LengthSquared() != 0f)
+        {
+            StartDodge();
+            calculatedSpeed += DodgeBonusSpeed;
+        }
 
-		translatedVector = translatedVector.Normalized();
-		translatedVector *= Speed;
+        translatedVector = translatedVector.Normalized();
+		translatedVector *= calculatedSpeed;
 
 		return translatedVector;
 
 	}
 
-	public void SetFacingRight(bool faceRight)
+    public void StartDodge()
+    {
+        //update the animations
+        tLeftDodge = DodgeLength;
+        DodgeAnim.Visible = true;
+        WalkAnim.Visible = false;
+        IdleAnim.Visible = false;
+    }
+
+    public void FinishDodge()
+    {
+        tLeftDodge = 0;
+
+        //update the animations
+        DodgeAnim.Visible = false;
+        WalkAnim.Visible = false;
+        IdleAnim.Visible = true;
+    }
+
+    public void SetFacingRight(bool faceRight)
     {
         WalkAnim.FlipH = faceRight;
         IdleAnim.FlipH = faceRight;
@@ -182,6 +238,12 @@ public partial class Player : CharacterBody2D
 
     public void ReceivePunch(float damage)
     {
+        //dont take damage while dodging
+        if(tLeftDodge > 0)
+        {
+            return;
+        }
+
         if (Health > 0)
         {
             Health -= damage;

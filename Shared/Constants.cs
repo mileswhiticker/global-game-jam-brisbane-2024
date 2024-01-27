@@ -13,6 +13,7 @@ public static class MovementDirection
 public static class PlayerAction
 {
     public static string Punch = "Punch";
+    public static string Dodge = "Dodge";
 }
 
 public static class GGJ
