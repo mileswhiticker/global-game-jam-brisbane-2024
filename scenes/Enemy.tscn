@@ -4,9 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://cw2en3wqc562b" path="res://Textures/enemy_walk.tres" id="2_2au2n"]
 [ext_resource type="SpriteFrames" uid="uid://cq073qm4tbii0" path="res://Textures/enemy_punch.tres" id="2_ddj17"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_grlua"]
-radius = 26.0
-height = 104.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay6ls"]
+radius = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ica2o"]
 radius = 45.0
@@ -20,7 +19,8 @@ PunchAnim = NodePath("PunchAnim")
 PunchArea2D = NodePath("PunchArea2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_grlua")
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_ay6ls")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

@@ -7,6 +7,9 @@ public partial class Enemy : CharacterBody2D
 	//only take damage from a punch once
 	protected int RecievedPunchID = 0;
     protected float health = 1;
+    [Export] float MaxHealth = 1f;
+    [Export] public int Speed { get; set; } = 150;
+    protected int MeleeRange = 50;
 
     [Export] AnimatedSprite2D WalkAnim;
     [Export] AnimatedSprite2D PunchAnim;
@@ -17,10 +20,8 @@ public partial class Enemy : CharacterBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        //just basic left to right movement for now
-        var velocity = Velocity;
-        velocity.X = 200.0f;
-        Velocity = velocity;
+        //some basic settings
+        health = MaxHealth;
 
         //initial animation settings
         WalkAnim.Play();
@@ -29,10 +30,13 @@ public partial class Enemy : CharacterBody2D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{
-	}
+    {
+        //where is the player?
+        Vector2 moveVector = (GGJ.player.Position - Position).Normalized() * Speed;
+        Velocity = moveVector;
+    }
 
-	public void MoveTo(Vector2 newPos)
+    public void MoveTo(Vector2 newPos)
 	{
         //GD.Print("Enemy::MoveTo(" + newPos.X + "," + newPos.Y + ")");
         Position = newPos;

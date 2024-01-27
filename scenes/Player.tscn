@@ -5,9 +5,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dfmc763buqcwo" path="res://Textures/player_walk.tres" id="4_hks7x"]
 [ext_resource type="SpriteFrames" uid="uid://454lsmdjxrv3" path="res://Textures/player_idle.tres" id="5_rj76q"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxuph"]
-radius = 25.83
-height = 92.33
+[sub_resource type="CircleShape2D" id="CircleShape2D_lf6q1"]
+radius = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8vppp"]
 radius = 45.0
@@ -24,7 +23,8 @@ PunchArea2D = NodePath("PunchArea2D")
 PunchShape2D = NodePath("PunchArea2D/PunchShape2D")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_yxuph")
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_lf6q1")
 metadata/_edit_group_ = true
 
 [node name="PunchArea2D" type="Area2D" parent="."]

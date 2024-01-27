@@ -33,6 +33,7 @@ public partial class Player : CharacterBody2D
 
         //some misc settings
         Health = HealthMax;
+        GGJ.player = this;
 
         //these are now set in the editor, but ive left them here as an example of how to do it in code
         /*

@@ -19,6 +19,7 @@ public static class GGJ
 {
     public static int CurrentPunchID = 0;
     public static MobController mobController;
+    public static Player player;
 }
 
 public static class GGJCollisionLayers
