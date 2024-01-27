@@ -8,7 +8,7 @@ public partial class Enemy : CharacterBody2D
 	protected int RecievedPunchID = 0;
     protected float Health = 1;
     [Export] float MaxHealth = 1f;
-    [Export] public int Speed { get; set; } = 150;
+    [Export] public int Speed { get; set; } = 100;
     protected int MeleeRange = 50;
     protected int MeleeRangeSqrd = 50 * 50;
 
@@ -137,8 +137,11 @@ public partial class Enemy : CharacterBody2D
             //GD.Print(checkNode.Name + " " + physicsBody.CollisionLayer + "/" + physicsBody.CollisionMask);
 
             //this is safe so long as the collision masks are properly setup
-            Player punchedPlayer = (Player)checkNode;
-            punchedPlayer.ReceivePunch(BaseDamage);
+            if(checkNode.Name == "Player")
+            {
+                Player punchedPlayer = (Player)checkNode;
+                punchedPlayer.ReceivePunch(BaseDamage);
+            }
         }
 
         //play the correct animation

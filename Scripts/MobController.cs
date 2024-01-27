@@ -20,7 +20,7 @@ public partial class MobController : Node
     List<Enemy> readyEnemies = new List<Enemy>();
     List<Enemy> tiredEnemies = new List<Enemy>();
 
-    
+    protected bool IsSpawning = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -35,7 +35,7 @@ public partial class MobController : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-        if(spawnedEnemies.Count < enemiesMax && enemiesSpawnLeft > 0)
+        if(IsSpawning && spawnedEnemies.Count < enemiesMax && enemiesSpawnLeft > 0)
         {
             tLeftSpawnEnemy -= delta;
         }
@@ -50,6 +50,16 @@ public partial class MobController : Node
 
         tLeftPunch -= delta;
         TryEnemyPunch();
+    }
+
+    public void StartSpawning()
+    {
+        IsSpawning = true;
+    }
+
+    public void StopSpawning()
+    {
+        IsSpawning = false;
     }
 
     protected void TryEnemyPunch()
