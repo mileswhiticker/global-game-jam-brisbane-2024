@@ -21,6 +21,7 @@ public static class GGJ
     public static int CurrentPunchID = 0;
     public static MobController mobController;
     public static GameController gameController;
+    public static GameUIController gameUIController;
     public static Player player;
     public static Random random = new Random();
 }

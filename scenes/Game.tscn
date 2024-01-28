@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6n82ldgox3r8"]
+[gd_scene load_steps=4 format=3 uid="uid://b6n82ldgox3r8"]
 
 [ext_resource type="PackedScene" path="res://scenes/GameController.tscn" id="1_kqujs"]
 [ext_resource type="PackedScene" uid="uid://bh8otnq5yjasw" path="res://scenes/UI.tscn" id="3_ps4yy"]
-[ext_resource type="Script" path="res://scenes/GameUIController.cs" id="4_2vhtx"]
 [ext_resource type="PackedScene" path="res://scenes/MobController.tscn" id="4_8yw2l"]
 
 [node name="Game" type="Node2D"]
@@ -12,5 +11,7 @@ UIController = NodePath("../UI")
 
 [node name="MobController" parent="." instance=ExtResource("4_8yw2l")]
 
-[node name="UI" parent="." instance=ExtResource("3_ps4yy")]
-script = ExtResource("4_2vhtx")
+[node name="UI" parent="." node_paths=PackedStringArray("ProgressBar") instance=ExtResource("3_ps4yy")]
+ProgressBar = NodePath("HealthBar")
+
+[editable path="UI"]

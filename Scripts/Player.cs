@@ -249,8 +249,7 @@ public partial class Player : CharacterBody2D
 		if (Health > 0)
 		{
 			Health -= damage;
-			
-			// emit damage here
+			GGJ.gameUIController.TakeDamage();
 			
 			GD.Print("Ow! Health: " + Health + "/" + HealthMax);
 

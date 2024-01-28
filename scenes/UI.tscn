@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh8otnq5yjasw"]
 
-[ext_resource type="Script" path="res://Scripts/UIController.cs" id="1_1qi2e"]
+[ext_resource type="Script" path="res://scenes/GameUIController.cs" id="1_mr7qv"]
 [ext_resource type="Texture2D" uid="uid://c12tx4iqbfl2w" path="res://Textures/white.png" id="2_k33jd"]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("ProgressBar")]
+[node name="UI" type="CanvasLayer"]
 visible = false
-script = ExtResource("1_1qi2e")
-ProgressBar = NodePath("HealthBar")
+script = ExtResource("1_mr7qv")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 offset_left = 316.0
