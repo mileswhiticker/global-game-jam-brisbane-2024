@@ -194,11 +194,11 @@ public partial class Player : CharacterBody2D
 
 		if (faceRight)
 		{
-			PunchShape2D.Position = new Vector2(PunchOffsetDist, 0);
+			PunchShape2D.Position = new Vector2(-PunchOffsetDist, 0);
 		}
 		else
 		{
-			PunchShape2D.Position = new Vector2(-PunchOffsetDist, 0);
+			PunchShape2D.Position = new Vector2(PunchOffsetDist, 0);
 		}
 	}
 
@@ -249,6 +249,9 @@ public partial class Player : CharacterBody2D
 		if (Health > 0)
 		{
 			Health -= damage;
+			
+			// emit damage here
+			
 			GD.Print("Ow! Health: " + Health + "/" + HealthMax);
 
 			if (Health <= 0)
