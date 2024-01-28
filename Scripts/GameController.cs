@@ -6,6 +6,9 @@ public partial class GameController : Node
 {
 	[Export] public PackedScene MainMenuScene;
 	[Export] public PackedScene GameScene;
+	[Export] public GameUIController UIController;
+	
+	
 	//[Export] public Godot.Collections.Array<PackedScene> Levels = new Godot.Collections.Array<PackedScene>();
 
 	protected Node currentLevel;
@@ -32,6 +35,8 @@ public partial class GameController : Node
 
 		currentLevel = MainMenuScene.Instantiate();
 		AddChild(currentLevel);
+
+		UIController.Visible = false;
 	}
 
 	public void NewGame()
@@ -44,6 +49,9 @@ public partial class GameController : Node
 		currentLevel = GameScene.Instantiate();
 		AddChild(currentLevel);
 		GGJ.mobController.StartSpawning();
+		
+		UIController.ResetHealth();
+		UIController.Visible = true;
 	}
 
 	public void QuitGame()

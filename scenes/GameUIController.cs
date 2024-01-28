@@ -1,5 +1,7 @@
 using Godot;
-public partial class UI : Node
+using System;
+
+public partial class GameUIController : CanvasLayer
 {
 	[Export] public TextureProgressBar? ProgressBar;
 
@@ -7,16 +9,10 @@ public partial class UI : Node
 	public override void _Ready()
 	{
 		if (ProgressBar == null) return;
-		
-		
+
+		Visible = false;
 		GD.Print(ProgressBar.Name);		
 		GD.Print(ProgressBar.Value);		
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		
 	}
 
 	public double TakeDamage()
@@ -25,5 +21,12 @@ public partial class UI : Node
 
 		ProgressBar.Value -= 1;
 		return ProgressBar.Value;
+	}
+
+	public void ResetHealth()
+	{
+		if (ProgressBar == null) return;
+		
+		ProgressBar.Value = ProgressBar.MaxValue;
 	}
 }
