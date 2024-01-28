@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6n82ldgox3r8"]
+[gd_scene load_steps=5 format=3 uid="uid://dpgebqhr8p3v8"]
 
-[ext_resource type="PackedScene" path="res://scenes/GameController.tscn" id="1_kqujs"]
-[ext_resource type="PackedScene" uid="uid://bh8otnq5yjasw" path="res://scenes/UI.tscn" id="3_ps4yy"]
-[ext_resource type="PackedScene" path="res://scenes/MobController.tscn" id="4_8yw2l"]
+[ext_resource type="PackedScene" uid="uid://df71cux51tuem" path="res://Scenes/GameController.tscn" id="1_kqujs"]
+[ext_resource type="PackedScene" uid="uid://bh8otnq5yjasw" path="res://Scenes/UI.tscn" id="3_ps4yy"]
+[ext_resource type="PackedScene" uid="uid://cv46hv4h8ftts" path="res://Scenes/MobController.tscn" id="4_8yw2l"]
 [ext_resource type="Texture2D" uid="uid://b318x7qnqnx75" path="res://Textures/chicken crossing.png" id="4_xhjwb"]
 
 [node name="Game" type="Node2D"]
@@ -12,8 +12,7 @@ UIController = NodePath("../UI")
 
 [node name="MobController" parent="." instance=ExtResource("4_8yw2l")]
 
-[node name="UI" parent="." node_paths=PackedStringArray("ProgressBar") instance=ExtResource("3_ps4yy")]
-ProgressBar = NodePath("HealthBar")
+[node name="UI" parent="." instance=ExtResource("3_ps4yy")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="UI"]
 

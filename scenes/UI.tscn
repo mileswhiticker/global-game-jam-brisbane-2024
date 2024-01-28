@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh8otnq5yjasw"]
 
-[ext_resource type="Script" path="res://scenes/GameUIController.cs" id="1_mr7qv"]
+[ext_resource type="Script" path="res://Scripts/GameUIController.cs" id="1_mr7qv"]
 [ext_resource type="Texture2D" uid="uid://c12tx4iqbfl2w" path="res://Textures/white.png" id="2_k33jd"]
 
 [node name="UI" type="CanvasLayer"]
