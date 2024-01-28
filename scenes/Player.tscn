@@ -62,4 +62,4 @@ visible = false
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("5_vs3w8")
 
-[connection signal="animation_finished" from="AnimPlayerPunch" to="." method="FinishPunchAttack"]
+[connection signal="animation_looped" from="AnimPlayerPunch" to="." method="FinishPunchAttack"]

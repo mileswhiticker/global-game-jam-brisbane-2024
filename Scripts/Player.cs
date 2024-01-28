@@ -147,12 +147,12 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed(MovementDirection.Left))
 		{
 			translatedVector += Vector2.Left;
-			SetFacingRight(false);
+			SetFacingRight(true);
 		}
 		if (Input.IsActionPressed(MovementDirection.Right))
 		{
 			translatedVector += Vector2.Right;
-			SetFacingRight(true);
+			SetFacingRight(false);
 		}
 		if (Input.IsActionPressed(PlayerAction.Dodge) && translatedVector.LengthSquared() != 0f)
 		{
@@ -190,7 +190,7 @@ public partial class Player : CharacterBody2D
 	{
 		WalkAnim.FlipH = faceRight;
 		IdleAnim.FlipH = faceRight;
-		PunchAnim.FlipH = !faceRight;
+		PunchAnim.FlipH = faceRight;
 
 		if (faceRight)
 		{
@@ -233,6 +233,8 @@ public partial class Player : CharacterBody2D
 
 			//disable idle anim
 			IdleAnim.Visible = false;
+			
+			GD.Print("Punch start.");
 		}
 	}
 
@@ -261,9 +263,12 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
-	public void FinishPunchAttack()
+	private void FinishPunchAttack()
 	{
+		GD.Print("Punch over. New relationship with idle.");
+		
 		PunchAnim.Visible = false;
+		PunchAnim.Stop();
 	}
 
 	[Signal] public delegate void HitPlayerEventHandler();

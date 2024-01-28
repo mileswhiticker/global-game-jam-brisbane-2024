@@ -48,7 +48,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"PlayerPunch",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 0.2,
