@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bruqegyevurqr"]
+[gd_scene load_steps=7 format=3 uid="uid://dxij5e2ieypxn"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyChicken.cs" id="1_hsfvf"]
 [ext_resource type="SpriteFrames" path="res://Textures/chicken_walk.tres" id="2_m17yi"]

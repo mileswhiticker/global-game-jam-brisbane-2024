@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2o8vtt7gkme1"]
+[gd_scene load_steps=7 format=3 uid="uid://bdl3llvndop4n"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_5wm75"]
 [ext_resource type="SpriteFrames" uid="uid://cw2en3wqc562b" path="res://Textures/enemy_walk.tres" id="2_2au2n"]
