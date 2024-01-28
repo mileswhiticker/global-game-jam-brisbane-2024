@@ -1,14 +1,55 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://cstcmsdjd4e8g"]
+[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://cstcmsdjd4e8g"]
 
+[ext_resource type="Texture2D" uid="uid://s1gq52r8tr2e" path="res://Textures/PlayerPunch/Layer 1.png" id="1_bbsjm"]
 [ext_resource type="Texture2D" uid="uid://e0dj7j71mu4b" path="res://Textures/blue_stickman_punch0.png" id="1_vqmnw"]
+[ext_resource type="Texture2D" uid="uid://c3choi4f2qcoo" path="res://Textures/PlayerPunch/Layer 2.png" id="2_al1oa"]
 [ext_resource type="Texture2D" uid="uid://dp784pr4lgdoj" path="res://Textures/blue_stickman_punch1.png" id="2_kmtew"]
+[ext_resource type="Texture2D" uid="uid://cv40guv5rql6u" path="res://Textures/PlayerPunch/Layer 3.png" id="3_dim3v"]
 [ext_resource type="Texture2D" uid="uid://bxmh2px08fdli" path="res://Textures/blue_stickman_punch2.png" id="3_s8pkq"]
 [ext_resource type="Texture2D" uid="uid://b34ex4v8826dg" path="res://Textures/blue_stickman_punch3.png" id="4_bav6x"]
+[ext_resource type="Texture2D" uid="uid://cyp1soh3wu6ld" path="res://Textures/PlayerPunch/Layer 4.png" id="4_i57yc"]
 [ext_resource type="Texture2D" uid="uid://bmyxs6f6t1jti" path="res://Textures/blue_stickman_idle0.png" id="5_3u5em"]
+[ext_resource type="Texture2D" uid="uid://b2wpmarso5k7l" path="res://Textures/PlayerPunch/Layer 5.png" id="5_e6wg3"]
 [ext_resource type="Texture2D" uid="uid://cyfr0c8e1dap2" path="res://Textures/blue_stickman_idle1.png" id="6_w2f2n"]
+[ext_resource type="Texture2D" uid="uid://csuqyceib2fp0" path="res://Textures/PlayerPunch/Layer 6.png" id="6_xu58p"]
+[ext_resource type="Texture2D" uid="uid://7icik6r6buye" path="res://Textures/PlayerPunch/Layer 7.png" id="7_jvdpr"]
+[ext_resource type="Texture2D" uid="uid://c43fe766cfxkm" path="res://Textures/PlayerPunch/Layer 8.png" id="8_1orei"]
+[ext_resource type="Texture2D" uid="uid://coe8ukt3mu35w" path="res://Textures/PlayerPunch/Layer 9.png" id="9_kihfy"]
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bbsjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_al1oa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dim3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i57yc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e6wg3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xu58p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jvdpr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1orei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kihfy")
+}],
+"loop": true,
+"name": &"PlayerPunch",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 0.2,
 "texture": ExtResource("1_vqmnw")

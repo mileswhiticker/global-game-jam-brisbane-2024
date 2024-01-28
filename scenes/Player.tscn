@@ -13,6 +13,7 @@ radius = 30.0
 radius = 45.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("WalkAnim", "PunchAnim", "IdleAnim", "DodgeAnim", "PunchArea2D", "PunchShape2D")]
+scale = Vector2(4.96, 4.96)
 collision_layer = 2
 collision_mask = 2
 up_direction = Vector2(0, 1)
@@ -25,7 +26,8 @@ PunchArea2D = NodePath("PunchArea2D")
 PunchShape2D = NodePath("PunchArea2D/PunchShape2D")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 40)
+position = Vector2(0, -0.201614)
+scale = Vector2(0.516129, 0.516129)
 shape = SubResource("CircleShape2D_lf6q1")
 metadata/_edit_group_ = true
 
@@ -34,26 +36,30 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="PunchShape2D" type="CollisionShape2D" parent="PunchArea2D"]
-position = Vector2(26, 0)
+position = Vector2(12.9032, 0)
+scale = Vector2(0.33871, 0.33871)
 shape = SubResource("CircleShape2D_8vppp")
 
 [node name="AnimPlayerPunch" type="AnimatedSprite2D" parent="."]
 visible = false
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("3_arkxf")
+animation = &"PlayerPunch"
 
 [node name="AnimPlayerWalk" type="AnimatedSprite2D" parent="."]
 visible = false
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("4_hks7x")
+animation = &"PlayerRun"
 
 [node name="AnimPlayerIdle" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("5_rj76q")
+animation = &"PlayerIdle"
 
 [node name="AnimPlayerDodge" type="AnimatedSprite2D" parent="."]
 visible = false
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("5_vs3w8")
 
-[connection signal="animation_finished" from="AnimPlayerPunch" to="." method="FinishPunchAttack"]
+[connection signal="animation_looped" from="AnimPlayerPunch" to="." method="FinishPunchAttack"]
