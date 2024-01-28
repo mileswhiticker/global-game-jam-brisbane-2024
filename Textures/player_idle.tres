@@ -1,10 +1,39 @@
-[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://454lsmdjxrv3"]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://454lsmdjxrv3"]
 
+[ext_resource type="Texture2D" uid="uid://dj0j8ochmqsiq" path="res://Textures/PlayerIdle/Layer 1.png" id="1_0rav8"]
 [ext_resource type="Texture2D" uid="uid://bmyxs6f6t1jti" path="res://Textures/blue_stickman_idle0.png" id="1_g43p7"]
 [ext_resource type="Texture2D" uid="uid://cyfr0c8e1dap2" path="res://Textures/blue_stickman_idle1.png" id="2_j31d7"]
+[ext_resource type="Texture2D" uid="uid://b06rwkxasm468" path="res://Textures/PlayerIdle/Layer 2.png" id="2_q6ue3"]
+[ext_resource type="Texture2D" uid="uid://b04ldcedtjiro" path="res://Textures/PlayerIdle/Layer 3.png" id="3_0x5vj"]
+[ext_resource type="Texture2D" uid="uid://780vopfim4yx" path="res://Textures/PlayerIdle/Layer 4.png" id="4_iehis"]
+[ext_resource type="Texture2D" uid="uid://bcdwvdtovyul4" path="res://Textures/PlayerIdle/Layer 5.png" id="5_ph7c2"]
+[ext_resource type="Texture2D" uid="uid://c0m1bnwrjcwqu" path="res://Textures/PlayerIdle/Layer 6.png" id="6_s5xb5"]
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0rav8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_q6ue3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0x5vj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iehis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ph7c2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_s5xb5")
+}],
+"loop": true,
+"name": &"PlayerIdle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_g43p7")
