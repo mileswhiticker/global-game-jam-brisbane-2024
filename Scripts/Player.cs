@@ -31,9 +31,12 @@ public partial class Player : CharacterBody2D
 		//start out non-visible 
 		WalkAnim.Visible = false;
 		PunchAnim.Visible = false;
+		IdleAnim.Visible = false;
 
-		//have these playing in the background
-		IdleAnim.Play();
+        DodgeAnim.Visible = false;
+
+        //have these playing in the background
+        IdleAnim.Play();
 		WalkAnim.Play();
 		DodgeAnim.Play();
 
@@ -41,14 +44,16 @@ public partial class Player : CharacterBody2D
 		Health = HealthMax;
 		GGJ.player = this;
 
-		//these are now set in the editor, but ive left them here as an example of how to do it in code
-		/*
+		PunchOffsetDist = PunchShape2D.Position.X;
+
+        //these are now set in the editor, but ive left them here as an example of how to do it in code
+        /*
 		this.CollisionLayer = GGJCollisionLayers.Bitmask(GGJCollisionLayers.Player);
 		this.CollisionMask = GGJCollisionLayers.Bitmask(GGJCollisionLayers.Player);
 		PunchArea2D.CollisionLayer = GGJCollisionLayers.Bitmask(GGJCollisionLayers.Enemy);
 		PunchArea2D.CollisionMask = GGJCollisionLayers.Bitmask(GGJCollisionLayers.Enemy);
 		*/
-	}
+    }
 
 	public override void _Process(double delta)
 	{
